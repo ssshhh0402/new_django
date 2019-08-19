@@ -168,7 +168,7 @@ article = Article()
 article.title = '1번글'
 article.content = '1번 내용'
 # 위의 세줄 또는 article = Article(title='글', content='내용')
-article.save()  # 그리고 저장하기
+article.save()  # 그리고 저장하기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 #2. create 메서드 활용
 article = Article.objects.create(title='글', content='내용')
