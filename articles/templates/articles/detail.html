@@ -5,7 +5,10 @@
   <h2>{{ article.title }}</h2>
   <h3>작성일자 : {{ article.created_at }}</h3>
   <h3>수정일자 : {{ article.updated_at }}</h3>
+
   <hr>
   <p>{{ article.content }}</p>
   <a href="/articles/">돌아가기</a>
+  <a href="/articles/{{ article.id }}/delete/">삭제하기</a>
+  <a href="/articles/{{ article.id }}/edit/">수정하기</a>
 {% endblock %}

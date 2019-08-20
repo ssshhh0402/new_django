@@ -3,6 +3,7 @@ from .models import Article
 # Create your views here.
 
 def index(request):
+    # articles = Article.objects.all()[0:10] 
     articles = Article.objects.order_by('-id') # 작성
     context = {
         'articles': articles
@@ -29,3 +30,23 @@ def detail(request, article_pk):
         'article': article
     }
     return render(request, 'articles/detail.html', context)
+
+def delete(request, article_pk):
+    article = Article.objects.get(pk=article_pk)
+    article.delete()
+    return redirect('/articles/')
+
+def edit(request, article_pk):
+    article = Article.objects.get(pk=article_pk)
+    context = {
+        'article': article
+    }
+    return render(request, 'articles/edit.html', context)
+
+def update(request, article_pk):
+    article = Article.objects.get(pk=article_pk)    
+    article.title = request.GET.get('title')
+    article.content = request.GET.get('content')
+    article.save()
+
+    return redirect(f'/articles/{article.pk}/')
