@@ -2,15 +2,16 @@
   <h1>게시판에 오신걸 환영합니다.</h1>
   <table border="1px solid black" style="width:50%" >
     <tr>
+      <th>id</th>
       <th>제목</th>
-      <th>내용</th>
       <th>시간</th>
     </tr>
     {% for article in articles %}
     <tr>
-      <td>{{article.title}}</td>
-      <td>{{article.content | truncatechars:10 }}</td>
+      <td>{{article.id}}</td>
+      <td><a href="/articles/{{ article.pk }}/" style="color:black; text-decoration: none;">{{article.title}}</a></td>
       <td>{{article.created_at}}</td>
+      
     </tr>
     {% endfor %}
   </table>

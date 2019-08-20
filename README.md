@@ -131,9 +131,15 @@ Running migrations:
 
 ## 3. Django Query Methods
 
+> 모델을 사용하는 방법. 메소드들(?)
+>
 > Django ORM을 활용하게 되면, 파이썬 객체 조작으로 데이터베이스 조작이 가능하다.
 >
 > ORM(Object - Relational - Mapping) 주로 활용되는 쿼리문들이 모두 method로 구성되어있다.
+>
+> ORM을 쓰면 편한 이유 중 하나가 settings.py -> DATABASES 에서 'sqlite3'를 다른거로 바꾸면 자동으로 해당 sql 문으로 바뀐다.
+
+* 좀 더 편하게 하기 위해서 `pip install ipython`도 해주고,
 
 ```bash
 $ python manage.py shell
@@ -246,3 +252,6 @@ Article.objects.order_by('title')  # title를 기준으로 오름차순 정렬
 
 
 
+## 기타
+
+`python manage.py sqlmigrate articles 0001`  이렇게 하면 articles 0001의 sql 문을 보여준다

@@ -21,4 +21,11 @@ def create(request):
         'article': article
     }
     # return render(request, 'articles/create.html', context)    
-    return redirect('/articles/')  # redirect : 모든 view가 html파일을 가질 필요는 없어! 이렇게 바로 어딘가로 보낼수가 있거든
+    return redirect(f'/articles/{article.pk}/')  # redirect : 모든 view가 html파일을 가질 필요는 없어! 이렇게 바로 어딘가로 보낼수가 있거든
+
+def detail(request, article_pk):
+    article = Article.objects.get(pk=article_pk)
+    context = {
+        'article': article
+    }
+    return render(request, 'articles/detail.html', context)
