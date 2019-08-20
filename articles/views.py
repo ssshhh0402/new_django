@@ -50,3 +50,5 @@ def update(request, article_pk):
     article.save()
 
     return redirect(f'/articles/{article.pk}/')
+
+    

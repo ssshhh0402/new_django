@@ -10,3 +10,5 @@ urlpatterns = [
     path('<int:article_pk>/edit/', views.edit),
     path('<int:article_pk>/update/', views.update),
 ]
+
+

@@ -255,3 +255,17 @@ Article.objects.order_by('title')  # title를 기준으로 오름차순 정렬
 ## 기타
 
 `python manage.py sqlmigrate articles 0001`  이렇게 하면 articles 0001의 sql 문을 보여준다
+
+* 삭제 (delete)
+* 수정
+* 
+
+extenstions 에서`django` 설치하면 좀 더 편하게 사용가능 +  `Cirl + ,` -> `Lnclude laguages`  -> `Edit in setting.js`  에서 다음 을 추가 하면 emmet 까지 편하게 쓸 수 있다
+
+```
+,
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    }
+```
+
