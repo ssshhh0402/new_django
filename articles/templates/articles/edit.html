@@ -2,18 +2,18 @@
 {% block body %}
 
 <h1>{{article.pk}}번 글 수정 중입니다..</h1>
-<form action="/articles/create/">
+<form action="{% url 'articles:update' article.pk%}">
   <div class="form-group">
     <label for="title">제목</label>
-    <input type="text" class="form-control" id="title" placeholder="제목" name="title">
+    <input type="text" class="form-control" id="title" name="title" value="{{article.title}}">
   </div>
   <div class="form-group">
     <label for="content">내용</label>
-    <textarea class="form-control" id="content" rows="10" name="content"></textarea>
+    <textarea class="form-control" id="content" rows="10" name="content">{{article.content}}</textarea>
   </div>
   <div class="d-flex justify-content-end">
   <input class="btn btn-dark ml-5" type="submit" value="게시글 수정">
-  <a class="btn btn-dark ml-5" href="/articles/{{ article.pk }}/" role="button">취소</a>
+  <a class="btn btn-dark ml-5" href="{% url 'articles:detail' article.pk %}" role="button">취소</a>
 
   </div>
 </form>

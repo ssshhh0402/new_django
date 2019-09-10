@@ -15,8 +15,8 @@
   </div>
   <hr>
   <div class="d-flex justify-content-end mt-3">
-    <a class="btn btn-dark ml-2" href="/articles/" role="button">돌아가기</a>
-    <a class="btn btn-dark ml-2" href="/articles/{{ article.id }}/delete/" role="button">삭제하기</a>
-    <a class="btn btn-dark ml-2" href="/articles/{{ article.id }}/edit/" role="button">수정하기</a>
+    <a class="btn btn-dark ml-2" href="{% url 'articles:index' %}" role="button">돌아가기</a>
+    <a class="btn btn-dark ml-2" href="{% url 'articles:delete' article.pk %}" role="button">삭제하기</a>
+    <a class="btn btn-dark ml-2" href="{% url 'articles:edit' article.pk %}" role="button">수정하기</a>
   </div>
 {% endblock %}

@@ -22,7 +22,7 @@ def create(request):
         'article': article
     }
     # return render(request, 'articles/create.html', context)    
-    return redirect(f'/articles/{article.pk}/')  # redirect : 모든 view가 html파일을 가질 필요는 없어! 이렇게 바로 어딘가로 보낼수가 있거든
+    return redirect(f'articles:detail', article.pk)  # redirect : 모든 view가 html파일을 가질 필요는 없어! 이렇게 바로 어딘가로 보낼수가 있거든
 
 def detail(request, article_pk):
     article = Article.objects.get(pk=article_pk)
@@ -34,7 +34,7 @@ def detail(request, article_pk):
 def delete(request, article_pk):
     article = Article.objects.get(pk=article_pk)
     article.delete()
-    return redirect('/articles/')
+    return redirect('articles:index')
 
 def edit(request, article_pk):
     article = Article.objects.get(pk=article_pk)
@@ -49,6 +49,6 @@ def update(request, article_pk):
     article.content = request.GET.get('content')
     article.save()
 
-    return redirect(f'/articles/{article.pk}/')
+    return redirect(f'articles:detail', article.pk)
 
     
