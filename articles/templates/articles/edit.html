@@ -2,7 +2,8 @@
 {% block body %}
 
 <h1>{{article.pk}}번 글 수정 중입니다..</h1>
-<form action="{% url 'articles:update' article.pk%}">
+<form action="{% url 'articles:update' article.pk%}" method="POST">
+  {% csrf_token %}
   <div class="form-group">
     <label for="title">제목</label>
     <input type="text" class="form-control" id="title" name="title" value="{{article.title}}">
