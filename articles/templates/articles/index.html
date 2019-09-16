@@ -20,24 +20,6 @@
     {% endfor %}
   </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item disabled">
@@ -53,7 +35,7 @@
 </nav>
 
 <div class="d-flex justify-content-end">
-    <a class="btn btn-dark " href="/articles/new/" role="button">글 작성하기</a>
+    <a class="btn btn-dark " href="{% url 'articles:create' %}" role="button">글 작성하기</a>
 </div>
 
   {% endblock %}

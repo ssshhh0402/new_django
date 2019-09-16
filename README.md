@@ -221,7 +221,7 @@ article = Article.objects.create(title='글', content='내용')
   ```
 
   * 리턴되는 값은 `Article`인스턴스
-  * `.get()`은 그 결과가 여러개 이거나 없는 경우 오류를 발생시킴.
+  * `.get()`은 그 결과가 여러개 이거나 없는 경우 오류를 발생시킴. :warning:
   * 따라서, 단일 데이터 조회시(promary key를 통해 조회시)에만 사용한다.
 
 * 특정(단일 X) 데이터 조회
