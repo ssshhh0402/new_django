@@ -14,7 +14,7 @@
     {% for article in articles %}
     <tr>
       <th scope="row">{{article.id}}</th>
-      <td><a href="{% url 'articles:detail' article.pk%}" style="color:black; text-decoration: none;">{{article.title}}</a></td>
+      <td><a href="{% url 'articles:detail' article.pk%}" style="color:black; text-decoration: none;">{{article.title}} ({{article.comment_set.all.count}})</a></td>
       <td>{{article.created_at}}</td>
     </tr>
     {% endfor %}

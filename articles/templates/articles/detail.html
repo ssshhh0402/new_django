@@ -14,6 +14,19 @@
     <p>{{ article.content }}</p>
   </div>
   <hr>
+  <div>
+    <div style="float:left;">
+      <p>댓글</p>
+    </div>
+    <div style="margin-left: 48px;padding-left: 12px; border-left: solid 0.5px">
+      {%for comment in comments%}
+        <p>{{comment.content}}</p>
+      {% empty %}
+        <p>무플..ㅠㅠ 관심 좀 주세요</p> <!-- empty 쓰면 굳이 if 어쩌구 count 가 0 어쩌구 할필요가 없겠지-->
+      {%endfor%}
+    </div>
+  </div>
+  <hr>
   <div class="d-flex justify-content-end mt-3">
     <a class="btn btn-dark ml-2" href="{% url 'articles:index' %}" role="button">돌아가기</a>
     <!-- <a class="btn btn-dark ml-2" href="{% url 'articles:delete' article.pk %}" role="button">삭제하기</a> -->
@@ -23,4 +36,11 @@
     </form>
     <a class="btn btn-dark ml-2" href="{% url 'articles:update' article.pk %}" role="button">수정하기</a>
   </div>
+  <hr>
+  <h3>댓글 작성</h3>
+  <form action="/articles/{{article.pk}}/comment_create/" method="POST">
+    {% csrf_token%}
+    <input class="form-control" type="text" name="comment" >
+    <input class="d-block btn btn-dark ml-auto mt-2 " type="submit" value="등록">
+  </form>
 {% endblock %}
