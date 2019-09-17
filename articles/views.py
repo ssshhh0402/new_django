@@ -5,8 +5,6 @@ from django.contrib import messages
 from IPython import embed
 
 
-
-from IPython import embed
 from .models import Article, Comment
 # Create your views here.
 
@@ -34,10 +32,13 @@ def create(request):
         # 검증 프론트엔드에서 막은걸로 끝이 아니다..!
         if article_form.is_valid():
         # 검증에 성공하면 저장하고
-            title = article_form.cleaned_data.get('title')
-            content = article_form.cleaned_data.get('content')
-            article = Article(title=title, content=content)
-            article.save()
+            # title = article_form.cleaned_data.get('title')
+            # content = article_form.cleaned_data.get('content')
+            # article = Article(title=title, content=content)
+            # article.save()
+
+            # meta 어쩌구 이후로는 바로 이렇게만 해도 된다
+            article = article_form.save()
             return redirect('articles:detail', article.pk)
     else:
     # GET 요청 처리 -> form 만 주는거
@@ -52,21 +53,23 @@ def create(request):
 def update(request, article_pk):
     article = Article.objects.get(pk=article_pk)
     if request.method == 'POST':
-        article_form = ArticleForm(request.POST)
+        article_form = ArticleForm(request.POST, instance=article)
         if article_form.is_valid():
-            article.title = article_form.cleaned_data.get('title')
-            article.content = article_form.cleaned_data.get('content')
-            article.save()
+            # article.title = article_form.cleaned_data.get('title')
+            # article.content = article_form.cleaned_data.get('content')
+            # article.save()
+            article = article_form.save()
             return redirect('articles:detail', article_pk)
     else:
-        article_form = ArticleForm(
-            initial={
-                'title':article.title,
-                'content':article.content
-            }
-        )
+        # article_form = ArticleForm(
+        #     initial={
+        #         'title':article.title,
+        #         'content':article.content
+        #     }
+        # )
+        article_form = ArticleForm(instance=article)
     context = {
-        'article':article,
+        # 'article':article,
         'article_form':article_form
     }
     return render(request, 'articles/form.html', context)    
