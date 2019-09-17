@@ -3,13 +3,22 @@ from .models import Article
 
 
 class ArticleForm(forms.ModelForm):
-    # 위젯 설정 2.
+    # # 위젯 설정 2.
     title = forms.CharField(
         max_length=140, 
         label='제목',
+        help_text='제목 입력해!',
         widget=forms.TextInput(
             attrs={
                 'placeholder':'제목입력하거라'
+            }
+        )
+    )
+    content = forms.CharField(
+        label='내용',
+        widget=forms.Textarea(
+            attrs={
+                'placeholder':'내용입력'
             }
         )
     )

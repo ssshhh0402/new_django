@@ -1,4 +1,6 @@
 {% extends 'articles/base.html' %}
+{% load bootstrap4 %}
+
 {% block body%}
 {% if request.resolver_match.url_name == 'create' %}
   <h1> 글 작성하기 </h1>
@@ -6,10 +8,10 @@
   <h1> 글 수정하기 </h1>
 {% endif %}
 <!--장고로직 활용한 인풋 -->
-<form action="{% url 'articles:create' %}" method="POST">
+<form action="{% url 'articles:create' %}" method="POST" class="form">
   {% csrf_token %}
-  {{article_form.as_p}}
-  <button type="submit" class="btn btn-dark">게시글 저장</button>
+  {% bootstrap_form article_form %}
+  {% bootstrap_button "게시글 저장" button_type="submit" button_class="btn-dark" %}
 </form>
 
 {% endblock %}

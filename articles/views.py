@@ -3,6 +3,7 @@ from django.views.decorators.http import require_POST
 from .forms import ArticleForm
 from django.contrib import messages
 from IPython import embed
+import bootstrap4
 
 
 from .models import Article, Comment
