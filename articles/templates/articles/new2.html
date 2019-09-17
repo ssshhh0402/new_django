@@ -1,0 +1,10 @@
+{% extends 'articles/base.html' %}
+{% block body%}
+<!--장고로직 활용한 인풋 -->
+<form action="{% url 'articles:create' %}" method="POST">
+  {% csrf_token %}
+  {{article_form.as_p}}
+  <button type="submit" class="btn btn-dark">게시글 저장</button>
+</form>
+
+{% endblock %}
