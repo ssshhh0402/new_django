@@ -48,7 +48,12 @@
       </form>
     </div>
   </nav>
-  <div class="container mt-5">
+  <div class="container">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{% if message.tags %}{{message.tags}}{%endif%} mb-n5" style="width: 100%;" role="alert">{{ message }}</div>
+      {% endfor %}
+    {% endif %}      
     {% block body %}
     {% endblock %}
   </div>

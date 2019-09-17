@@ -1,5 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
+
+from django.contrib import messages
+
+
+
 from IPython import embed
 from .models import Article, Comment
 # Create your views here.
@@ -78,4 +83,13 @@ def comment_create(request, article_pk):
     comment.content = request.POST.get('comment')
     comment.article_id = article_pk
     comment.save()
+    messages.add_message(request, messages.SUCCESS, '댓글이 등록되었습니다.')
+    return redirect('articles:detail', article_pk)
+
+@require_POST
+def comment_delete(request, article_pk, comment_pk):
+    comment = Comment.objects.get(pk=comment_pk)
+    comment.delete()
+    # messages.add_message(request, messages.SUCCESS, '댓글이 삭제되었습니다.') 이거도 되지만 밑에 거가 shortcut
+    messages.success(request, '댓글이 삭제되었습니다.')
     return redirect('articles:detail', article_pk)

@@ -34,7 +34,6 @@ class Comment(models.Model):
     # 4. SET_DEFAULY : 디폴트 값으로 치환.
 
 
-
 # models.py에서 - python 클래스 정의
 #               - 모델 설계도
 # makemigrations - migration 파일 생성
