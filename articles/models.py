@@ -1,5 +1,6 @@
 from django.db import models
-
+from imagekit.models import ProcessedImageField, ImageSpecField
+from imagekit.processors import ResizeToFill
 # Create your models here.
 
 # 기본 모델을 받아서 나만의 아티클을 생성한다는 느낌
@@ -14,6 +15,15 @@ class Article(models.Model):    # models.Model 을 상속 받는 형식으로 �
     title = models.CharField(max_length=10)  # 기사의 제목을 변수값으로 가지는데 그것은 캐릭터 필드이다. (일종의 스키마를 정의하는거야)
     content = models.TextField()
     image = models.ImageField(blank=True)
+    # ImageSpecField : input 하나만 받고 잘라서 저장
+    # ProcessedImageField : input 받을 것을 잘라서 저장
+    # resize to fill : 300x300으로 자르기
+    # resize to fit : 긴쪽(너비 혹은 높이)을 300에 맞추고 비율에 맞게 사용
+    image_thumbnail = ImageSpecField(
+        processors=[ResizeToFill(300, 300)],
+        format='JPEG',
+        options={'quality':80},
+    )
     # DateTimeField
     #   auto_now_add : 생성시 자동으로 저장
     #   auto_now : 수정시마다 자동으로 저장
