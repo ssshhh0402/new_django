@@ -43,7 +43,8 @@
     <h3>댓글 작성</h3>
     <form action="{% url 'articles:comment_create' article.pk %}" method="POST">
       {% csrf_token%}
-      <input class="form-control" type="text" name="comment" >
+      {{ comment_form.as_p }}
+      <!-- <input class="form-control" type="text" name="comment" > -->
       <input class="d-block btn btn-dark ml-auto mt-2 " type="submit" value="등록">
     </form>
   </div>

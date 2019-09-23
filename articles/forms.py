@@ -1,5 +1,5 @@
 from django import forms
-from .models import Article
+from .models import Article, Comment
 
 
 class ArticleForm(forms.ModelForm):
@@ -37,7 +37,10 @@ class ArticleForm(forms.ModelForm):
         # 아래처럼 원하는 것만 뽑을 수도 있다.
         # fields = ('title',)
         # exclude - ('title', ) 처럼 써서  필요없는거 뺼 수도 있다
-
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        exclude = ('article',)
 
 
 # 처음에는 이렇게 배웠지. 그런데 하고보니 model 정보를 받와와서 할 수 있을거 같아!!

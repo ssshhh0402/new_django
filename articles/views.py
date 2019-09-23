@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST, require_GET
-from .forms import ArticleForm
+from .forms import ArticleForm, CommentForm
 from django.contrib import messages
 from IPython import embed
 import bootstrap4
@@ -79,9 +79,11 @@ def detail(request, article_pk):
     # article = Article.objects.get(pk=article_pk)
     article = get_object_or_404(Article, pk=article_pk)
     comments = article.comment_set.all()
+    comment_form = CommentForm()
     context = {
         'article': article,
-        'comments': comments
+        'comments': comments,
+        'comment_form': comment_form
     }
     return render(request, 'articles/detail.html', context)
 
@@ -104,12 +106,27 @@ def delete(request, article_pk):
 
 
 def comment_create(request, article_pk):
-    comment = Comment()
-    comment.content = request.POST.get('comment')
-    comment.article_id = article_pk
-    comment.save()
-    messages.add_message(request, messages.SUCCESS, '댓글이 등록되었습니다.')
-    return redirect('articles:detail', article_pk)
+    article = get_object_or_404(Article, pk=article_pk)
+    #1. modelform에 사용자 입력값 넣고
+    comment_form = CommentForm(request.POST)
+    #2. 검증하고
+    if comment_form.is_valid():
+    #3. 맞으면 저장
+        #3-1. 사용자 입력값으로 comment instace 생성 (저장은 하지않는다!)
+        comment = comment_form.save(commit=False)
+        #3-2. FK 넣고 저장!
+        comment.article = article
+        comment.save()
+    else:
+        messages.success(request, '댓글이 형식에 맞지 않습니다.')
+    #4. return redirect
+    return redirect('articles:detail',article_pk)
+    # comment = Comment()
+    # comment.content = request.POST.get('comment')
+    # comment.article_id = article_pk 
+    # comment.save()
+    # messages.add_message(request, messages.SUCCESS, '댓글이 등록되었습니다.')
+    # return redirect('articles:detail', article_pk)
 
 @require_POST
 def comment_delete(request, article_pk, comment_pk):
