@@ -13,6 +13,7 @@ class Article(models.Model):    # models.Model 을 상속 받는 형식으로 �
     # CharField -  필수인자로 max_length 지정
     title = models.CharField(max_length=10)  # 기사의 제목을 변수값으로 가지는데 그것은 캐릭터 필드이다. (일종의 스키마를 정의하는거야)
     content = models.TextField()
+    image = models.ImageField(blank=True)
     # DateTimeField
     #   auto_now_add : 생성시 자동으로 저장
     #   auto_now : 수정시마다 자동으로 저장

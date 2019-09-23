@@ -29,7 +29,7 @@ def index(request):
 def create(request):
     if request.method == 'POST':
     # (POST) 요청 -> 검증 및 저장
-        article_form = ArticleForm(request.POST)
+        article_form = ArticleForm(request.POST, request.FILES)
         # 검증 프론트엔드에서 막은걸로 끝이 아니다..!
         if article_form.is_valid():
         # 검증에 성공하면 저장하고

@@ -15,5 +15,3 @@ urlpatterns = [
     # path('<int:comment_pk>/comment_delete/', views.comment_delete, name='comment_delete'), 이렇게 해도 되지만 그냥 의미를 담을겸 밑에처럼 해보자
     path('<int:article_pk>/comments/<int:comment_pk>/delete/', views.comment_delete, name='comment_delete'),
 ]
-
-
