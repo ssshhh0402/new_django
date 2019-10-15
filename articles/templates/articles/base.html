@@ -49,7 +49,12 @@
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
+        <li class="nav-item">
+        {% comment %} request안에 정보가 담겨있어서 이렇게만 써도 user 이름이 나온다. context로 담지 않아도 된다! {% endcomment %}
+          <a class="nav-link">{{user.username}}</a>
+        </li>
       </ul>
+      
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

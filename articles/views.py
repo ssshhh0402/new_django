@@ -17,7 +17,7 @@ def index(request):
     # print(request.get_full_path())
     # print(request.build_absolute_uri()) #이렇게 request 오브젝트에는 다양한 정보가 담겨있다
     articles = Article.objects.order_by('-id') # 작성
-    embed()
+    # embed()
     context = {
         'articles': articles
     }
