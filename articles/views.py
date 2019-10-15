@@ -17,6 +17,7 @@ def index(request):
     # print(request.get_full_path())
     # print(request.build_absolute_uri()) #이렇게 request 오브젝트에는 다양한 정보가 담겨있다
     articles = Article.objects.order_by('-id') # 작성
+    embed()
     context = {
         'articles': articles
     }
@@ -112,7 +113,7 @@ def comment_create(request, article_pk):
     #2. 검증하고
     if comment_form.is_valid():
     #3. 맞으면 저장
-        #3-1. 사용자 입력값으로 comment instace 생성 (저장은 하지않는다!)
+        #3-1. 사용자 입력값으로 comment instace 생성 (저장은 하지않는다!) (아직 데이터베이스에 요청 X)
         comment = comment_form.save(commit=False)
         #3-2. FK 넣고 저장!
         comment.article = article
