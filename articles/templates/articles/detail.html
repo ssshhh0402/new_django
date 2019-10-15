@@ -10,8 +10,10 @@
     </div>
     <hr>
     <div class="container">
+    {% if article.image %}
       <img src="{{article.image.url}}" alt="{{article.image.name}}">
       <img src="{{article.image_thumbnail.url}}" alt="{{article.image.name}}">
+    {% endif %}      
       <p>{{ article.content }}</p>
     </div>
     <hr>
