@@ -139,3 +139,4 @@ MEDIA_URL = '/media/'
 # MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 
+LOGIN_URL = '/accounts/login/'  #@Login Required 걸릴 경우 로그인화면으로 연결해주는 주소 Default값 설정!
